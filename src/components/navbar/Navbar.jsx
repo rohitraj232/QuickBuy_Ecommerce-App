@@ -31,6 +31,16 @@ const Navbar = () => {
                   Link
                 </Link>
               </li>
+              <li class="nav-item">
+                <Link class="nav-link" to={'/user-dashboard'}>
+                  user
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to={'/admin-dashboard'}>
+                Admin
+                </Link>
+              </li>
               {/* <li class="nav-item dropdown">
                 <Link
                   class="nav-link dropdown-toggle"
@@ -62,11 +72,7 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li> */}
-              {/* <li class="nav-item">
-                <Link class="nav-link disabled" aria-disabled="true">
-                  Disabled
-                </Link>
-              </li> */}
+              
             </ul>
             <form class="d-flex" role="search">
               <input

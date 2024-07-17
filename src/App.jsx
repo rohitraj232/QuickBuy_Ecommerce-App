@@ -7,6 +7,10 @@ import CartPage from './pages/cart/CartPage'
 import AllProduct from './pages/allProduct/AllProduct'
 import Login from './pages/registration/Login'
 import Signup from './pages/registration/Signup'
+import UserDashboard from './pages/user/UserDashboard'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import AddProductPage from './pages/admin/AddProductPage'
+import UpdateProductPage from './pages/admin/UpdateProductPage'
 
 function App() {
 
@@ -20,6 +24,10 @@ function App() {
           <Route path="/allproduct" element={<AllProduct/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
+          <Route path='/user-dashboard' element={<UserDashboard/>} />
+          <Route path='/admin-dashboard' element={<AdminDashboard/>} />
+          <Route path='/add-product' element={<AddProductPage/>} />
+          <Route path='/update-product' element={<UpdateProductPage/>} />
           <Route path='/*' element={<NoPage/>} />
         </Routes>
       </Router>
