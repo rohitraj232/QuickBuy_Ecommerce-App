@@ -11,12 +11,15 @@ import UserDashboard from './pages/user/UserDashboard'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AddProductPage from './pages/admin/AddProductPage'
 import UpdateProductPage from './pages/admin/UpdateProductPage'
+import MyState from './context/myState'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
   return (
-    <>
+    <MyState>
       <Router>
+        <Toaster/>
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/productInfo' element={<ProductInfo/>} />
@@ -31,7 +34,7 @@ function App() {
           <Route path='/*' element={<NoPage/>} />
         </Routes>
       </Router>
-    </>
+    </MyState>
   )
 }
 

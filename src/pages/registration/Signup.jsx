@@ -1,13 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../../App.css'
 import { FaUser } from "react-icons/fa";
 import { IoMdKey } from "react-icons/io";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { useContext, useState } from "react";
+import myContext from "../../context/myContext";
+import toast from "react-hot-toast";
 
 
 const Signup = () => {
+    const context = useContext(myContext);
+    const {loading, setLoading} = context;
+
+    const navigate = useNavigate();
+
+    const [userSignup, setUserSignup] = useState({
+        name: "",
+        email: "",
+        password: "",
+        role: "user",
+    });
+
+    // user signup function
+    const userSignupFunction = async () => {
+        // validation
+        if(userSignup.name === "" || userSignup.email === "" || userSignup.password === "") {
+            return toast.error("All fields are required")        
+        }
+    }
+
     return (
         <>
             <section className="d-flex justify-content-center align-items-center full-height">
