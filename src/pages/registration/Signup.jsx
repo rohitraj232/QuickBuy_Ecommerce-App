@@ -8,6 +8,10 @@ import { MdEmail } from "react-icons/md";
 import { useContext, useState } from "react";
 import myContext from "../../context/myContext";
 import toast from "react-hot-toast";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import Loader from "../../components/loader/Loader";
+import { auth, fireDB } from "../../firebase/FirebaseConfig";
 
 
 const Signup = () => {
@@ -29,12 +33,58 @@ const Signup = () => {
         if(userSignup.name === "" || userSignup.email === "" || userSignup.password === "") {
             return toast.error("All fields are required")        
         }
+
+        setLoading(true);
+
+        try {
+            const users = await createUserWithEmailAndPassword(auth, userSignup.email, userSignup.password);
+
+            // create user object
+            const user = {
+                name: userSignup.name,
+                email: users.user.email,
+                uid: users.user.uid,
+                role: userSignup.role,
+                time: Timestamp.now(),
+                date: new Date().toLocaleString(
+                    "en-US",
+                    {
+                        month: "short",
+                        day: "2-digit",
+                        year: "numeric",
+                    }
+                )
+            }
+
+            // create user reference
+            const userReference = collection(fireDB, "user");
+
+            // Add user detail
+            addDoc(userReference, user)
+
+            setUserSignup({
+                name: "",
+                email: "",
+                password: ""
+            })
+
+            toast.success("Signup Successfully");
+            setLoading(false);
+            navigate('/login')
+
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
     }
 
     return (
         <>
             <section className="d-flex justify-content-center align-items-center full-height">
                 <div className="container">
+                    {/* loader component */}
+                    {loading && <Loader/>}
+
                     <div className="wrapper_signup">
                         <div className="wrapper_signup-form">
                             <div className="row justify-content-center align-items-center">
@@ -61,6 +111,13 @@ const Signup = () => {
                                                             className="form-control"
                                                             id="exampleFormControlInput1"
                                                             placeholder="Enter Name:"
+                                                            value={userSignup.name}
+                                                            onChange={(e) => {
+                                                                setUserSignup({
+                                                                    ...userSignup,
+                                                                    name: e.target.value
+                                                                })
+                                                            }}
                                                         />
                                                     </div>
 
@@ -77,6 +134,13 @@ const Signup = () => {
                                                             className="form-control"
                                                             id="exampleFormControlInput2"
                                                             placeholder="Enter Email:"
+                                                            value={userSignup.email}
+                                                            onChange={(e) => {
+                                                                setUserSignup({
+                                                                    ...userSignup,
+                                                                    email: e.target.value
+                                                                })
+                                                            }}
                                                         />
                                                     </div>
 
@@ -92,10 +156,17 @@ const Signup = () => {
                                                             className="form-control"
                                                             id="exampleFormControlInput3"
                                                             placeholder="Enter Your Password:"
+                                                            value={userSignup.password}
+                                                            onChange={(e) => {
+                                                                setUserSignup({
+                                                                    ...userSignup,
+                                                                    password: e.target.value
+                                                                })
+                                                            }}
                                                         />
                                                     </div>
 
-                                                    <button type="button" class="btn btn-primary w-100">
+                                                    <button onClick={userSignupFunction} type="button" class="btn btn-primary w-100">
                                                         Sign Up
                                                     </button>
 

@@ -1,6 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const user = JSON.parse(localStorage.getItem("users"));
+  // console.log(user);
+
+  // navigate
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear("users");
+    navigate('./login')
+  }
+
   return (
     <>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -41,38 +52,39 @@ const Navbar = () => {
                 Admin
                 </Link>
               </li>
-              {/* <li class="nav-item dropdown">
-                <Link
-                  class="nav-link dropdown-toggle"
-                  to="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </Link>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" to="#">
-                      Action
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to="#">
-                      Another action
-                    </Link>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to="#">
-                      Something else here
-                    </Link>
-                  </li>
-                </ul>
-              </li> */}
               
+              {/* sign-up */}
+             {!user ? <li class="nav-item">
+                <Link class="nav-link" to={'/signup'}>
+                Sign Up
+                </Link>
+              </li> : ""} 
+
+              {/* login */}
+              {!user ? <li class="nav-item">
+                <Link class="nav-link" to={'/login'}>
+                Login
+                </Link>
+              </li> : ""}
+              
+              {/* user */}
+              {user?.role === "user" && <li class="nav-item">
+                <Link class="nav-link" to={'/user-dashboard'}>
+                {user?.name}
+                </Link>
+              </li>}
+
+              {/* admin */}
+              {user?.role === "admin" && <li class="nav-item">
+                <Link class="nav-link" to={'/admin-dashboard'}>
+                {user?.name}
+                </Link>
+              </li>}
+
+              {user && <li class="nav-item" onClick={logout}>
+                Log Out
+              </li>}
+
             </ul>
             <form class="d-flex" role="search">
               <input
