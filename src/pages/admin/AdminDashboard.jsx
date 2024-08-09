@@ -4,14 +4,18 @@ import OrderDetail from "../../components/admin/OrderDetail"
 import UserDetail from "../../components/admin/UserDetail"
 
 const AdminDashboard = () => {
+    const user = JSON.parse(localStorage.getItem('users'));
+
     return (
         <>
             <section>
                 <div className="container">
                     <h2 className="text-center"> Admin </h2>
 
-                    <p className="mt-2">Name: kwelkmdc</p>
-                    <p className="mt-2">Email: kwelkmdc@gmail.com</p>
+                    <p className="mt-2">Name: {user?.name}</p>
+                    <p className="mt-2">Email: {user?.email}</p>
+                    <p className="mt-2">Date: {user?.date}</p>
+                    <p className="mt-2">Role: {user?.role}</p>
 
                     <Tabs>
                         <TabList className="row">
