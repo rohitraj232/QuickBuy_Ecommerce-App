@@ -48,7 +48,7 @@ function App() {
             </ProtectedRouteForAdmin>
           } />
 
-          <Route path='/update-product' element={
+          <Route path='/update-product/:id' element={
             <ProtectedRouteForAdmin>
               <UpdateProductPage/>
             </ProtectedRouteForAdmin>

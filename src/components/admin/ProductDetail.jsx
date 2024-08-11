@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import myContext from "../../context/myContext"
 import Loader from "../loader/Loader";
 
@@ -9,6 +9,8 @@ const ProductDetail = () => {
     const { loading, getAllProduct } = context;
 
     // console.log(getAllProduct);
+
+    const navigate = useNavigate();
 
     return (
         <>
@@ -54,7 +56,7 @@ const ProductDetail = () => {
                                             <td>{price}</td>
                                             <td>{category}</td>
                                             <td>{date}</td>
-                                            <td>Edit</td>
+                                            <td onClick={() => navigate(`/update-product/${id}`)}>Edit</td>
                                             <td>Delete</td>
                                         </tr>
                                     )
