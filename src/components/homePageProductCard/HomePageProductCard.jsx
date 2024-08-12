@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import myContext from "../../context/myContext";
+import Loader from "../loader/Loader";
 
 // productData
 const productData = [
@@ -86,21 +89,28 @@ const productData = [
 
 const HomePageProductCard = () => {
   const navigate = useNavigate();
+
+  const context = useContext(myContext);
+  const {loading, getAllProduct} = context;
+
   return (
     <>
       <section>
         <div className="container">
           <div className="">
             <h2 className="fw-semibold">Bestselling Products</h2>
+            <div>
+              {loading && <Loader/>}
+            </div>
           </div>
           <div className="wrapper_productCards">
             <div className="row">
-              {productData.map((item, index) => {
-                const { image, title, price } = item;
+              {getAllProduct.slice(0, 8).map((item, index) => {
+                const { id, title, price, productImageUrl } = item;
                 return (
                   <div key={index} className="col-12 col-md-4 col-lg-3">
                     <div className="wrapper_product">
-                      <img src={image} onClick={() => navigate('/productInfo')} alt="" className="img-fluid"   />
+                      <img src={productImageUrl} onClick={() => navigate(`/productInfo/${id}`)} alt="" className="img-fluid" />
                       <p>QuickBuy</p>
                       <h5>{title.substring(0, 20)}</h5>
                       <h4>Rs {price}</h4>

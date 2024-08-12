@@ -2,15 +2,33 @@ import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import myContext from "../../context/myContext"
 import Loader from "../loader/Loader";
+import { deleteDoc, doc } from "firebase/firestore";
+import toast from "react-hot-toast";
+import { fireDB } from "../../firebase/FirebaseConfig";
 
 const ProductDetail = () => {
 
     const context = useContext(myContext);
-    const { loading, getAllProduct } = context;
+    const { loading, setLoading, getAllProduct, getAllProductFunction } = context;
 
     // console.log(getAllProduct);
 
+    // navigate
     const navigate = useNavigate();
+
+    // delete product function
+    const deleteProduct = async (id) => {
+        setLoading(true);
+        try {
+            await  deleteDoc(doc(fireDB, 'product', id))
+            toast.success("Product deleted Successfully");
+            getAllProductFunction();
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
 
     return (
         <>
@@ -57,7 +75,7 @@ const ProductDetail = () => {
                                             <td>{category}</td>
                                             <td>{date}</td>
                                             <td onClick={() => navigate(`/update-product/${id}`)}>Edit</td>
-                                            <td>Delete</td>
+                                            <td onClick={() => deleteProduct(id)}>Delete</td>
                                         </tr>
                                     )
                                 })}

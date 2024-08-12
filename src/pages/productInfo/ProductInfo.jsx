@@ -1,23 +1,68 @@
-import React from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
+import myContext from '../../context/myContext'
+import { useParams } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import { fireDB } from '../../firebase/FirebaseConfig';
+import Loader from '../../components/loader/Loader';
 
 const ProductInfo = () => {
+
+  // getting context
+  const context = useContext(myContext);
+  const { loading, setLoading } = context;
+
+  const [product, setProduct] = useState('');
+  const { id } = useParams();
+
+  // get product data
+  const getProductData = async () => {
+    setLoading(true);
+    try {
+      const productTemp = await getDoc(doc(fireDB, 'product', id));
+      setProduct(productTemp.data());
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getProductData();
+  }, []);
+
   return (
     <Layout>
       <div className="container my-5">
-        <div className="row">
-            <div className="col-12 col-md-6">
-                <img src="https://i.pinimg.com/736x/e4/61/f2/e461f2246b6ad93e2099d98780626396.jpg" alt="" width="500" height="500" className='img-fluid' />
-            </div>
-            <div className="col-12 col-md-6">
-                <h1>Product name: Lorem ipsum dolor sit amet.</h1>
+        {
+          loading ?
+            <>
+              <div>
+                <Loader />
+              </div>
+            </>
+
+            :
+
+            <div className="row">
+              <div className="col-12 col-md-6">
+                <img src={product?.productImageUrl} alt="" width="500" height="500" className='img-fluid' />
+              </div>
+              <div className="col-12 col-md-6">
+                <h1>Product name: {product?.title}</h1>
                 <p>stars: *****</p>
-                <h5>Rs. 9000.00</h5>
+                <h5>Rs. {product?.price}</h5>
                 <h6>Description :</h6>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam incidunt deserunt sunt, ex sequi itaque hic quaerat cum soluta voluptatem fugit deleniti explicabo, quasi voluptates error, minima expedita mollitia sit doloribus esse voluptate? Repudiandae perferendis excepturi, odit porro fugit enim nemo facere inventore quibusdam optio ut quidem necessitatibus et ipsa ea a. Necessitatibus voluptate et recusandae nemo quisquam laboriosam ab sed consectetur laborum omnis, eaque accusamus officia officiis molestias eos enim, cumque voluptatibus dignissimos. Quidem cumque consequatur dolore cum labore facere magnam atque iste officiis ab quas laboriosam unde facilis, animi maiores? Quo ducimus eius enim, dolorem quas fugiat deserunt?</p>
+                <p>
+                  {product?.description}
+                </p>
                 <button type='btn' className='btn btn-primary'>Add to cart</button>
+              </div>
             </div>
-        </div>
+
+        }
+
       </div>
     </Layout>
   )

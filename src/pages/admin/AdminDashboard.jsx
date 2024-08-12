@@ -2,9 +2,16 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs"
 import ProductDetail from "../../components/admin/ProductDetail"
 import OrderDetail from "../../components/admin/OrderDetail"
 import UserDetail from "../../components/admin/UserDetail"
+import { useContext } from "react"
+import myContext from "../../context/myContext"
 
 const AdminDashboard = () => {
     const user = JSON.parse(localStorage.getItem('users'));
+
+    const context = useContext(myContext);
+    const {getAllProduct} = context;
+
+    // console.log(getAllProduct.length);
 
     return (
         <>
@@ -21,7 +28,7 @@ const AdminDashboard = () => {
                         <TabList className="row">
                             <Tab className="col-12 col-md-4">
                                 <div className="p-2 border border-1">
-                                    <h4>Total product: 20</h4>
+                                    <h4>Total product: {getAllProduct.length}</h4>
                                 </div>
                             </Tab>
                             <Tab className="col-12 col-md-4">

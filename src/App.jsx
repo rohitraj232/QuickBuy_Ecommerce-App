@@ -24,7 +24,7 @@ function App() {
         <Toaster/>
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/productInfo' element={<ProductInfo/>} />
+          <Route path='/productInfo/:id' element={<ProductInfo/>} />
           <Route path='/cart' element={<CartPage/>} />
           <Route path="/allproduct" element={<AllProduct/>} />
           <Route path='/login' element={<Login/>} />

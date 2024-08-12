@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
+import { useContext } from "react";
+import myContext from "../../context/myContext";
+import Loader from "../../components/loader/Loader";
 
 const productData = [
     {
@@ -85,24 +88,33 @@ const productData = [
 ];
 
 const AllProduct = () => {
+    // navigate
     const navigate = useNavigate();
+
+    // get loading & getAllProduct from the context
+    const context = useContext(myContext);
+    const {loading, getAllProduct} = context;
+
     return (
         <Layout>
             <section className="my-5">
                 <div className="container">
                     <div className="">
                         <p className="text-center">All Products</p>
+                        <div>
+                            {loading && <Loader />}
+                        </div>
                     </div>
                     <div className="wrapper_productCards">
                         <div className="row">
-                            {productData.map((item, index) => {
-                                const { image, title, price } = item;
+                            {getAllProduct.map((item, index) => {
+                                const { id, title, price, productImageUrl } = item;
                                 return (
                                     <div key={index} className="col-12 col-md-4 col-lg-3">
                                         <div className="wrapper_product">
                                             <img
-                                                src={image}
-                                                onClick={() => navigate("/productInfo")}
+                                                src={productImageUrl}
+                                                onClick={() => navigate(`/productInfo/${id}`)}
                                                 alt=""
                                                 className="img-fluid"
                                             />
