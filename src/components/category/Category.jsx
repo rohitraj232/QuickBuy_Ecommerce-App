@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 // category
 const category = [
   {
@@ -27,6 +29,10 @@ const category = [
 ];
 
 const Category = () => {
+
+  // navigate
+  const navigate = useNavigate();
+
   return (
     <>
       <section>
@@ -34,7 +40,7 @@ const Category = () => {
           <div className="row">
             {category.map((item, index) => {
               return (
-                <div key={index} className="col-2">
+                <div onClick={() => navigate(`/category/${item.name}`)} key={index} className="col-2">
                   <div className="wrapper_categories">
                     <img src={item.image} alt="categories-img" width="50" height="50" />
                     <h5 className="mt-3">{item.name}</h5>
