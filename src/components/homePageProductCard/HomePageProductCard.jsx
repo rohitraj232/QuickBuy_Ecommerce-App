@@ -1,7 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
 import Loader from "../loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, deleteFromCart } from "../../redux/cartSlice";
+import toast from "react-hot-toast";
 
 // productData
 const productData = [
@@ -93,6 +96,26 @@ const HomePageProductCard = () => {
   const context = useContext(myContext);
   const {loading, getAllProduct} = context;
 
+  // from redux-toolkit
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  // add to cart function
+  const addCart = (item) => {
+    dispatch(addToCart(item));
+    toast.success("Added to Cart");
+  }
+
+  // delete from cart function
+  const deleteCart = (item) => {
+    dispatch(deleteFromCart(item));
+    toast.success("Delete Cart")
+  }
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems]);
+
   return (
     <>
       <section>
@@ -114,7 +137,18 @@ const HomePageProductCard = () => {
                       <p>QuickBuy</p>
                       <h5>{title.substring(0, 20)}</h5>
                       <h4>Rs {price}</h4>
-                      <button className="mt-2">Add to cart</button>
+                      <div>
+                        {cartItems.some((p) => p.id === item.id)
+                          ?
+                          <button onClick={() => deleteCart(item)} className="mt-2">
+                            Delete from Cart
+                          </button>
+                          :
+                          <button onClick={() => addCart(item)} className="mt-2">
+                            Add to cart
+                          </button>
+                        }
+                      </div>
                     </div>
                   </div>
                 );

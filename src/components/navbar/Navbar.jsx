@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -11,6 +12,9 @@ const Navbar = () => {
     localStorage.clear("users");
     navigate('./login')
   }
+
+  // cartItems
+  const cartItems = useSelector((state) => state.cart);
 
   return (
     <>
@@ -38,8 +42,8 @@ const Navbar = () => {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to="#">
-                  Link
+                <Link class="nav-link" to="/cart">
+                  cart({cartItems.length})
                 </Link>
               </li>
               <li class="nav-item">

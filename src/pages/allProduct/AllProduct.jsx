@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import myContext from "../../context/myContext";
 import Loader from "../../components/loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, deleteFromCart } from "../../redux/cartSlice";
+import toast from "react-hot-toast";
 
 const productData = [
     {
@@ -93,7 +96,26 @@ const AllProduct = () => {
 
     // get loading & getAllProduct from the context
     const context = useContext(myContext);
-    const {loading, getAllProduct} = context;
+    const { loading, getAllProduct } = context;
+
+    const cartItems = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
+    // add to cart function
+    const addCart = (item) => {
+        dispatch(addToCart(item));
+        toast.success("Add to cart")
+    }
+
+    // delete to cart function
+    const deleteCart = (item) => {
+        dispatch(deleteFromCart(item));
+        toast.success("Delete Cart")
+    }
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }, [cartItems]);
 
     return (
         <Layout>
@@ -121,7 +143,18 @@ const AllProduct = () => {
                                             <p>QuickBuy</p>
                                             <h5>{title.substring(0, 20)}</h5>
                                             <h4>Rs {price}</h4>
-                                            <button className="mt-2">Add to cart</button>
+                                            <div>
+                                                {cartItems.some((p) => p.id === item.id)
+                                                    ?
+                                                    <button onClick={() => deleteCart(item)} className="mt-2">
+                                                        Delete from Cart
+                                                    </button>
+                                                    :
+                                                    <button onClick={() => addCart(item)} className="mt-2">
+                                                        Add to cart
+                                                    </button>
+                                                }
+                                            </div>
                                         </div>
                                     </div>
                                 );
