@@ -1,4 +1,11 @@
+import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/layout/Layout";
+import { decrementQuantity, deleteFromCart, incrementQuantity } from "../../redux/cartSlice";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { CiCircleMinus } from "react-icons/ci";
+import { CiCirclePlus } from "react-icons/ci";
+
 
 const products = [
   {
@@ -40,6 +47,36 @@ const products = [
 ];
 
 const CartPage = () => {
+
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  // delete from cart function
+  const deleteCart = (item) => {
+    dispatch(deleteFromCart(item));
+    toast.success("Delete Cart");
+  }
+
+  // increment quantity function
+  const handleIncrement = (id) => {
+    dispatch(incrementQuantity(id));
+  };
+
+  // decrement quantity function
+  const handleDecrement = (id) => {
+    dispatch(decrementQuantity(id));
+  }
+
+  // cartItemTotal function
+  const cartItemTotal = cartItems.map(item => item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
+
+  // cartTotal function
+  const cartTotal = cartItems.map(item => item.price * item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems])
+
   return (
     <Layout>
       <section>
@@ -47,15 +84,21 @@ const CartPage = () => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-6">
-                {products.map((item, index) => {
+                {cartItems.map((item, index) => {
+                  const { id, title, price, productImageUrl, quantity, category } = item;
                   return (
                     <div key={index} className="row my-3 border border-1 p-3">
                       <div className="col-12 col-md-3">
-                        <img src={item.imageSrc} alt="" width="100" />
+                        <img src={productImageUrl} alt="product Image" width="100" />
                       </div>
                       <div className="col-12 col-md-6">
-                      <p>{item.name}</p>
-                      <p>{item.price}</p>
+                        <p>{title}</p>
+                        <p>{category}</p>
+                        <p>{price}</p>
+                        <button onClick={() => handleDecrement(id)}><CiCircleMinus /></button>
+                        <input type="text" value={quantity} />
+                        <button onClick={() => handleIncrement(id)}><CiCirclePlus /></button>
+                        <button onClick={() => deleteCart(item)}>Remove</button>
                       </div>
                     </div>
                   );
@@ -63,9 +106,8 @@ const CartPage = () => {
               </div>
               <div className="col-12 col-md-6 my-3 p-3">
                 <h4>Price Details:</h4>
-                <p>Price (3 items): Rs. 99209</p>
-                <p>Discount: Rs. 200</p>
-                <p>Total Amount:  Rs. 99009</p>
+                <p>Price ({cartItemTotal} items): Rs. {cartTotal}</p>
+                <p>Total Amount:  Rs. {cartTotal}</p>
                 <button type="btn" className="btn btn-success"> Buy now</button>
               </div>
             </div>
