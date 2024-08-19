@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { fireDB } from '../../firebase/FirebaseConfig';
 import Loader from '../../components/loader/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, deleteFromCart } from '../../redux/cartSlice';
+import toast from 'react-hot-toast';
 
 const ProductInfo = () => {
 
@@ -20,13 +23,32 @@ const ProductInfo = () => {
     setLoading(true);
     try {
       const productTemp = await getDoc(doc(fireDB, 'product', id));
-      setProduct(productTemp.data());
+      setProduct({ ...productTemp.data(), id: productTemp.id });
       setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   }
+
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  // add to cart function
+  const addCart = (item) => {
+    dispatch(addToCart(item));
+    toast.success("Add to cart")
+  }
+
+  // delete function
+  const deleteCart = (item) => {
+    dispatch(deleteFromCart(item));
+    toast.success("Delete cart")
+  }
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   useEffect(() => {
     getProductData();
@@ -57,7 +79,18 @@ const ProductInfo = () => {
                 <p>
                   {product?.description}
                 </p>
-                <button type='btn' className='btn btn-primary'>Add to cart</button>
+                <div>
+                  {cartItems.some((p) => p.id === product.id)
+                    ?
+                    <button onClick={() => deleteCart(product)} className="mt-2">
+                      Delete from Cart
+                    </button>
+                    :
+                    <button onClick={() => addCart(product)} className="mt-2">
+                      Add to cart
+                    </button>
+                  }
+                </div>
               </div>
             </div>
 

@@ -84,6 +84,9 @@ const CartPage = () => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-6">
+
+              {cartItems.length > 0 ? 
+                <>
                 {cartItems.map((item, index) => {
                   const { id, title, price, productImageUrl, quantity, category } = item;
                   return (
@@ -103,6 +106,11 @@ const CartPage = () => {
                     </div>
                   );
                 })}
+                </>
+                :
+                <h1>Not Found</h1>
+              }
+                
               </div>
               <div className="col-12 col-md-6 my-3 p-3">
                 <h4>Price Details:</h4>
