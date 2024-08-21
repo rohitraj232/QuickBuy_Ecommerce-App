@@ -2,9 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/layout/Layout";
 import { decrementQuantity, deleteFromCart, incrementQuantity } from "../../redux/cartSlice";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CiCircleMinus } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
+import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { fireDB } from "../../firebase/FirebaseConfig";
+import { Navigate } from "react-router-dom";
 
 
 const products = [
@@ -77,6 +81,69 @@ const CartPage = () => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems])
 
+
+  // Buy Now Section starts here
+  // user
+  const user = JSON.parse(localStorage.getItem('users'));
+
+  // address info state
+  const [addressInfo, setAddressInfo] = useState({
+    name: "",
+    address: "",
+    pincode: "",
+    mobileNumber: "",
+    time: Timestamp.now(),
+    date: new Date().toLocaleString(
+      "en-US",
+      {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      }
+    )
+  });
+
+  // Buy Now Function
+  const buyNowFunction = () => {
+    // validation
+    if (addressInfo.name === "" || addressInfo.address === "" || addressInfo.pincode === "" || addressInfo.mobileNumber === "") {
+      return toast.error("All fields are required")
+    }
+
+
+    // order info
+    const orderInfo = {
+      cartItems,
+      addressInfo,
+      email: user.email,
+      userid: user.uid,
+      status: "confirmed",
+      time: Timestamp.now(),
+      date: new Date().toLocaleString(
+        "en-US",
+        {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        }
+      )
+    }
+
+    try {
+      const orderRef = collection(fireDB, 'order');
+      addDoc(orderRef, orderInfo);
+      setAddressInfo({
+        name: "",
+        address: "",
+        pincode: "",
+        mobileNumber: "",
+      })
+      toast.success("Order Placed Successfully")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Layout>
       <section>
@@ -85,38 +152,47 @@ const CartPage = () => {
             <div className="row">
               <div className="col-12 col-md-6">
 
-              {cartItems.length > 0 ? 
-                <>
-                {cartItems.map((item, index) => {
-                  const { id, title, price, productImageUrl, quantity, category } = item;
-                  return (
-                    <div key={index} className="row my-3 border border-1 p-3">
-                      <div className="col-12 col-md-3">
-                        <img src={productImageUrl} alt="product Image" width="100" />
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <p>{title}</p>
-                        <p>{category}</p>
-                        <p>{price}</p>
-                        <button onClick={() => handleDecrement(id)}><CiCircleMinus /></button>
-                        <input type="text" value={quantity} />
-                        <button onClick={() => handleIncrement(id)}><CiCirclePlus /></button>
-                        <button onClick={() => deleteCart(item)}>Remove</button>
-                      </div>
-                    </div>
-                  );
-                })}
-                </>
-                :
-                <h1>Not Found</h1>
-              }
-                
+                {cartItems.length > 0 ?
+                  <>
+                    {cartItems.map((item, index) => {
+                      const { id, title, price, productImageUrl, quantity, category } = item;
+                      return (
+                        <div key={index} className="row my-3 border border-1 p-3">
+                          <div className="col-12 col-md-3">
+                            <img src={productImageUrl} alt="product Image" width="100" />
+                          </div>
+                          <div className="col-12 col-md-6">
+                            <p>{title}</p>
+                            <p>{category}</p>
+                            <p>{price}</p>
+                            <button onClick={() => handleDecrement(id)}><CiCircleMinus /></button>
+                            <input type="text" value={quantity} />
+                            <button onClick={() => handleIncrement(id)}><CiCirclePlus /></button>
+                            <button onClick={() => deleteCart(item)}>Remove</button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                  :
+                  <h1>Not Found</h1>
+                }
+
               </div>
               <div className="col-12 col-md-6 my-3 p-3">
                 <h4>Price Details:</h4>
                 <p>Price ({cartItemTotal} items): Rs. {cartTotal}</p>
                 <p>Total Amount:  Rs. {cartTotal}</p>
-                <button type="btn" className="btn btn-success"> Buy now</button>
+                {/* buy now modal btn */}
+                {user ?
+                  <BuyNowModal
+                    addressInfo={addressInfo}
+                    setAddressInfo={setAddressInfo}
+                    buyNowFunction={buyNowFunction}
+                  />
+                  :
+                  <Navigate to={'/login'} />
+                }
               </div>
             </div>
           </div>
