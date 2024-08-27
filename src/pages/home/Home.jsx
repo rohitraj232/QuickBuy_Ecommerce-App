@@ -5,11 +5,13 @@ import HomePageProductCard from "../../components/homePageProductCard/HomePagePr
 import Track from "../../components/track/Track"
 import Testimonial from "../../components/testimonial/Testimonial"
 import Loader from "../../components/loader/Loader"
+import SearchBar from "../../components/searchBar/SearchBar"
 
 const Home = () => {
   return (
     <Layout>
       <HeroSection />
+      <SearchBar />
       <Category />
       <HomePageProductCard />
       <Track />
