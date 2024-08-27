@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import MyContext from "./myContext";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query} from "firebase/firestore";
 import { fireDB } from "../firebase/FirebaseConfig";
+import toast from "react-hot-toast";
 
 const myState = ({children}) => {
     // const name = "rohit raj"
@@ -60,12 +61,53 @@ const myState = ({children}) => {
         setLoading(false);
       }
     }
-
     // console.log(getAllOrder);
+
+    // delete order function
+    const orderDelete = async (id) => {
+      setLoading(true);
+      try {
+        await deleteDoc(doc(fireDB, 'order', id));
+        toast.success("Order Deleted Successfully");
+        getAllOrderFunction();
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    }
+
+
+    // user state
+    const [getAllUser, setGetAllUser] = useState([]);
+
+    // get all user function
+    const getAllUserFunction = async () => {
+      setLoading(true);
+      try {
+        const q = query(
+          collection(fireDB, "user"),
+          orderBy('time')
+        );
+        const data = onSnapshot(q, (QuerySnapshot) => {
+          let userArray = [];
+          QuerySnapshot.forEach((doc) => {
+            userArray.push({ ...doc.data(), id: doc.id })
+          });
+          setGetAllUser(userArray);
+          setLoading(false);
+        });
+        return () => data;
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    }
 
     useEffect(() => {
       getAllProductFunction();
       getAllOrderFunction();
+      getAllUserFunction();
     }, []);
 
   return (
@@ -74,7 +116,9 @@ const myState = ({children}) => {
         setLoading,
         getAllProduct,
         getAllProductFunction,
-        getAllOrder
+        getAllOrder,
+        orderDelete,
+        getAllUser
     }}>
       {children}
     </MyContext.Provider>

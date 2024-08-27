@@ -9,7 +9,7 @@ const AdminDashboard = () => {
     const user = JSON.parse(localStorage.getItem('users'));
 
     const context = useContext(myContext);
-    const {getAllProduct} = context;
+    const { getAllProduct, getAllOrder, getAllUser } = context;
 
     // console.log(getAllProduct.length);
 
@@ -33,12 +33,12 @@ const AdminDashboard = () => {
                             </Tab>
                             <Tab className="col-12 col-md-4">
                                 <div className="p-2 border border-1">
-                                    <h4>Total order: 10</h4>
+                                    <h4>Total order: {getAllOrder.length}</h4>
                                 </div>
                             </Tab>
                             <Tab className="col-12 col-md-4">
                                 <div className="p-2 border border-1">
-                                    <h4>Total user: 10</h4>
+                                    <h4>Total user: {getAllUser.length}</h4>
                                 </div>
                             </Tab>
                         </TabList>
