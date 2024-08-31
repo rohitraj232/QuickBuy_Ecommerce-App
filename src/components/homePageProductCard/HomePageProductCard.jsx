@@ -5,6 +5,9 @@ import Loader from "../loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteFromCart } from "../../redux/cartSlice";
 import toast from "react-hot-toast";
+import { MdDelete } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
+import '../../App.css'
 
 // productData
 const productData = [
@@ -94,7 +97,7 @@ const HomePageProductCard = () => {
   const navigate = useNavigate();
 
   const context = useContext(myContext);
-  const {loading, getAllProduct} = context;
+  const { loading, getAllProduct } = context;
 
   // from redux-toolkit
   const cartItems = useSelector((state) => state.cart);
@@ -119,35 +122,39 @@ const HomePageProductCard = () => {
   return (
     <>
       <section>
-        <div className="container">
-          <div className="">
-            <h2 className="fw-semibold">Bestselling Products</h2>
+        <div className="container my-5">
+          <div className="mb-4">
+            <h1 className="fw-semibold text-center">Bestselling Products</h1>
             <div>
-              {loading && <Loader/>}
+              {loading && <Loader />}
             </div>
           </div>
           <div className="wrapper_productCards">
             <div className="row">
               {getAllProduct.slice(0, 8).map((item, index) => {
-                const { id, title, price, productImageUrl } = item;
+                const { id, title, price, productImageUrl, category } = item;
                 return (
                   <div key={index} className="col-12 col-md-4 col-lg-3">
-                    <div className="wrapper_product">
-                      <img src={productImageUrl} onClick={() => navigate(`/productInfo/${id}`)} alt="" className="img-fluid" />
-                      <p>QuickBuy</p>
-                      <h5>{title.substring(0, 20)}</h5>
-                      <h4>Rs {price}</h4>
-                      <div>
-                        {cartItems.some((p) => p.id === item.id)
-                          ?
-                          <button onClick={() => deleteCart(item)} className="mt-2">
-                            Delete from Cart
-                          </button>
-                          :
-                          <button onClick={() => addCart(item)} className="mt-2">
-                            Add to cart
-                          </button>
-                        }
+                    <div className="wrapper_product border border-1 rounded-3 mb-4">
+                      <div className="wrapper_product-img">
+                        <img src={productImageUrl} onClick={() => navigate(`/productInfo/${id}`)} alt="product" loading="lazy" className="img-fluid b-t-r" />
+                      </div>
+                      <div className="wrapper-item-details p-3">
+                        <p className="fw-semibold mb-1 text-muted">{category}</p>
+                        <h5>{title.substring(0, 24) + "..."}</h5>
+                        <h6 className="text-primary"> ₹  {price}</h6>
+                        <div>
+                          {cartItems.some((p) => p.id === item.id)
+                            ?
+                            <button onClick={() => deleteCart(item)} type="button" class="btn btn-primary mt-3 w-100">
+                              Delete from Cart <MdDelete />
+                            </button>
+                            :
+                            <button onClick={() => addCart(item)} type="button" class="btn btn-primary mt-3 w-100">
+                              Add to Cart <FaShoppingCart />
+                            </button>
+                          }
+                        </div>
                       </div>
                     </div>
                   </div>

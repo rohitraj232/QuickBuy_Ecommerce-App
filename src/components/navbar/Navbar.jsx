@@ -1,5 +1,9 @@
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import SearchBar from "../searchBar/SearchBar";
+import "../../App.css";
+import { IoCartOutline } from "react-icons/io5";
+
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -18,7 +22,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary py-3 px-4 nav-sticky bottom-shadow">
         <div class="container-fluid">
           <Link class="navbar-brand" to="#">
             QuickBuy
@@ -34,73 +38,74 @@ const Navbar = () => {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
+          <div className="ms-md-4">
+            <SearchBar />
+          </div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="#">
+                <Link class="nav-link active fw-semibold" aria-current="page" to="#">
                   Home
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to="/cart">
-                  cart({cartItems.length})
+                <Link class="nav-link fw-semibold" to={'/user-dashboard'}>
+                  User
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to={'/user-dashboard'}>
-                  user
+                <Link class="nav-link fw-semibold" to={'/admin-dashboard'}>
+                  Admin
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={'/admin-dashboard'}>
-                Admin
-                </Link>
-              </li>
-              
+
               {/* sign-up */}
-             {!user ? <li class="nav-item">
-                <Link class="nav-link" to={'/signup'}>
-                Sign Up
+              {!user ? <li class="nav-item">
+                <Link class="nav-link fw-semibold" to={'/signup'}>
+                  Sign Up
                 </Link>
-              </li> : ""} 
+              </li> : ""}
 
               {/* login */}
               {!user ? <li class="nav-item">
-                <Link class="nav-link" to={'/login'}>
-                Login
+                <Link class="nav-link fw-semibold" to={'/login'}>
+                  Login
                 </Link>
               </li> : ""}
-              
+
               {/* user */}
               {user?.role === "user" && <li class="nav-item">
-                <Link class="nav-link" to={'/user-dashboard'}>
-                {user?.name}
+                <Link class="nav-link fw-semibold" to={'/user-dashboard'}>
+                  {user?.name}
                 </Link>
               </li>}
 
               {/* admin */}
               {user?.role === "admin" && <li class="nav-item">
-                <Link class="nav-link" to={'/admin-dashboard'}>
-                {user?.name}
+                <Link class="nav-link fw-semibold" to={'/admin-dashboard'}>
+                  {user?.name}
                 </Link>
               </li>}
 
               {user && <li class="nav-item" onClick={logout}>
-                Log Out
+                <Link className="nav-link fw-semibold">Log Out</Link>
               </li>}
 
+              <li class="nav-item mx-4">
+                <Link class="nav-link position-relative" to="/cart">
+                  {/* cart({cartItems.length}) */}
+                  <IoCartOutline className="fs-4" />
+                  <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">
+                    {cartItems.length}
+                    <span class="visually-hidden">cart messages</span>
+                  </span>
+                </Link>
+              </li>
+
             </ul>
-            <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+
+
+
           </div>
         </div>
       </nav>

@@ -1,3 +1,80 @@
 .full-height {
     height: 100vh;
 }
+
+.custom-shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.custom-banner {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption {
+    bottom: 14rem !important;
+}
+
+.nav-sticky {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 4 !important;
+}
+
+.bottom-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+.search {
+    width: 300px !important;
+}
+
+/* product card hover effect start */
+.wrapper_product {
+    overflow: hidden;
+  }
+  
+  .wrapper_product-img {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .wrapper_product-img img {
+    transition: all 1.1s;
+  }
+
+  .wrapper_product:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .wrapper_product:hover .wrapper_product-img img {
+    transform: scale(1.1); 
+  }
+  
+  /* product card hover effect end */
+
+  .b-t-r {
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+  }
+
+  .text-justify {
+    text-align: justify;
+  }
+
+
+  /* colors start */
+  .gold {
+    color: gold;
+  }
+  /* colors end */

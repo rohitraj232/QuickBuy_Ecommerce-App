@@ -8,6 +8,10 @@ import Loader from '../../components/loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, deleteFromCart } from '../../redux/cartSlice';
 import toast from 'react-hot-toast';
+import { MdDelete } from "react-icons/md";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
+import "../../App.css";
 
 const ProductInfo = () => {
 
@@ -69,25 +73,29 @@ const ProductInfo = () => {
 
             <div className="row">
               <div className="col-12 col-md-6">
-                <img src={product?.productImageUrl} alt="" width="500" height="500" className='img-fluid' />
+                <img src={product?.productImageUrl} alt="productimg" width="500" height="500" className='img-fluid mx-auto d-block rounded-3 mb-3' />
               </div>
               <div className="col-12 col-md-6">
-                <h1>Product name: {product?.title}</h1>
-                <p>stars: *****</p>
-                <h5>Rs. {product?.price}</h5>
-                <h6>Description :</h6>
-                <p>
+                <h2 className='mb-3'> {product?.title} </h2>
+                <div className="highlight mb-3">
+                  <p className='mb-1'><FaCheckCircle className='text-success' /> In Stock </p>
+                  <p className='mb-1'><FaCheckCircle className='text-success' /> Free Delivery Available </p>
+                  <p className='mb-1'><FaCheckCircle className='text-success' /> Sales 30% Off Use Code: <span className='fw-semibold'>QUICKBUY30 </span> </p>
+                </div>
+                <h5 className='text-primary'> ₹ {product?.price} </h5>
+                <h6 className='fs-5'>Description :</h6>
+                <p className='text-justify'>
                   {product?.description}
                 </p>
                 <div>
                   {cartItems.some((p) => p.id === product.id)
                     ?
-                    <button onClick={() => deleteCart(product)} className="mt-2">
-                      Delete from Cart
+                    <button onClick={() => deleteCart(product)} type="button" class="btn btn-primary mt-3">
+                      Delete from Cart <MdDelete />
                     </button>
                     :
-                    <button onClick={() => addCart(product)} className="mt-2">
-                      Add to cart
+                    <button onClick={() => addCart(product)} type="button" class="btn btn-primary mt-3 w-100">
+                      Add to Cart <FaShoppingCart />
                     </button>
                   }
                 </div>

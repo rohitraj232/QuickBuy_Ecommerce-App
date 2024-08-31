@@ -1,31 +1,32 @@
 import { useNavigate } from "react-router-dom";
+import '../../App.css'
 
 // category
 const category = [
   {
-    image: "https://cdn-icons-png.flaticon.com/256/4359/4359963.png",
-    name: "fashion",
+    image: "./src/assets/category/category-handbag.webp",
+    name: "HandBags",
   },
   {
-    image: "https://cdn-icons-png.flaticon.com/256/11833/11833323.png",
-    name: "shirt",
+    image: "./src/assets/category/category-watches.webp",
+    name: "Watches",
   },
   {
-    image: "https://cdn-icons-png.flaticon.com/256/8174/8174424.png",
-    name: "jacket",
+    image: "./src/assets/category/category-jacket.webp",
+    name: "Jackets",
   },
   {
-    image: "https://cdn-icons-png.flaticon.com/256/7648/7648246.png",
-    name: "mobile",
+    image: "./src/assets/category/category-shoes.webp",
+    name: "Shoes",
   },
   {
-    image: "https://cdn-icons-png.flaticon.com/256/12142/12142416.png",
-    name: "laptop",
+    image: "./src/assets/category/category-jeans.webp",
+    name: "Jeans",
   },
   {
-    image: "https://cdn-icons-png.flaticon.com/256/10686/10686553.png",
-    name: "shoes",
-  },    
+    image: "./src/assets/category/category-shirt.webp",
+    name: "Shirts",
+  },   
 ];
 
 const Category = () => {
@@ -37,12 +38,13 @@ const Category = () => {
     <>
       <section>
         <div className="container">
+        <h3 className="text-center mb-4">Top Categories</h3>
           <div className="row">
             {category.map((item, index) => {
               return (
-                <div onClick={() => navigate(`/category/${item.name}`)} key={index} className="col-2">
-                  <div className="wrapper_categories">
-                    <img src={item.image} alt="categories-img" width="50" height="50" />
+                <div onClick={() => navigate(`/category/${item.name}`)} key={index} className="col-4 col-md-1">
+                  <div className="wrapper_categories text-center">
+                    <img src={item.image} alt="categories-img" width="100" height="100" className="img-fluid custom-shadow rounded-pill" loading="lazy" />
                     <h5 className="mt-3">{item.name}</h5>
                   </div>
                 </div>
