@@ -14,7 +14,7 @@ const HeroSection = () => {
         <div class="carousel-inner" data-bs-interval="2000">
           <div class="carousel-item active position-relative">
             <div className="overlay"></div>
-            <img src="./src/assets/banner/banner1.jpg" class="d-block w-100 custom-banner" alt="banner" />
+            <img src="/public/assets/banner/banner1.jpg" class="d-block w-100 custom-banner" alt="banner" />
             <div class="carousel-caption d-md-block">
               <h1 className="text-uppercase">The biggest sale</h1>
               <p className="fs-4">Special for today</p>
@@ -22,7 +22,7 @@ const HeroSection = () => {
           </div>
           <div class="carousel-item position-relative">
             <div className="overlay"></div>
-            <img src="./src/assets/banner/banner2.jpg" class="d-block w-100 custom-banner" alt="banner" />
+            <img src="/public/assets/banner/banner2.jpg" class="d-block w-100 custom-banner" alt="banner" />
             <div class="carousel-caption d-md-block">
               <h1 className="text-uppercase">Summer collection</h1>
               <p className="fs-4">New Arrivals On Sale</p>
@@ -30,7 +30,7 @@ const HeroSection = () => {
           </div>
           <div class="carousel-item position-relative">
             <div className="overlay"></div>
-            <img src="./src/assets/banner/banner3.jpg" class="d-block w-100 custom-banner" alt="banner" />
+            <img src="/public/assets/banner/banner3.jpg" class="d-block w-100 custom-banner" alt="banner" />
             <div class="carousel-caption d-md-block">
             <h1 className="text-uppercase">The biggest sale</h1>
             <p className="fs-4">Special for today</p>
@@ -38,7 +38,7 @@ const HeroSection = () => {
           </div>
           <div class="carousel-item position-relative">
             <div className="overlay"></div>
-            <img src="./src/assets/banner/banner4.jpg" class="d-block w-100 custom-banner" alt="banner" />
+            <img src="/public/assets/banner/banner4.jpg" class="d-block w-100 custom-banner" alt="banner" />
             <div class="carousel-caption d-md-block">
             <h1 className="text-uppercase">Summer collection</h1>
             <p className="fs-4">New Arrivals On Sale</p>
@@ -46,7 +46,7 @@ const HeroSection = () => {
           </div>
           <div class="carousel-item position-relative">
             <div className="overlay"></div>
-            <img src="./src/assets/banner/banner5.jpg" class="d-block w-100 custom-banner" alt="banner" />
+            <img src="/public/assets/banner/banner5.jpg" class="d-block w-100 custom-banner" alt="banner" />
             <div class="carousel-caption d-md-block">
             <h1 className="text-uppercase">The biggest sale</h1>
             <p className="fs-4">Special for today</p>
