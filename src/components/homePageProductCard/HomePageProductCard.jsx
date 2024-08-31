@@ -135,13 +135,13 @@ const HomePageProductCard = () => {
                 const { id, title, price, productImageUrl, category } = item;
                 return (
                   <div key={index} className="col-12 col-md-4 col-lg-3">
-                    <div className="wrapper_product border border-1 rounded-3 mb-4">
+                    <div className="wrapper_product border border-1 rounded-3 mb-4 cursor-pointer">
                       <div className="wrapper_product-img">
                         <img src={productImageUrl} onClick={() => navigate(`/productInfo/${id}`)} alt="product" loading="lazy" className="img-fluid b-t-r" />
                       </div>
                       <div className="wrapper-item-details p-3">
                         <p className="fw-semibold mb-1 text-muted">{category}</p>
-                        <h5>{title.substring(0, 24) + "..."}</h5>
+                        <h5>{title.substring(0, 19) + "..."}</h5>
                         <h6 className="text-primary"> ₹  {price}</h6>
                         <div>
                           {cartItems.some((p) => p.id === item.id)

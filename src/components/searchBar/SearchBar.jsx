@@ -33,7 +33,7 @@ const SearchBar = () => {
                 {filterSearchData.map((item, index) => {
                   return (
                     <div key={index} onClick={() => navigate(`/productInfo/${item.id}`)}>
-                      <div className="d-flex align-items-center">
+                      <div className="d-flex align-items-center cursor-pointer">
                         <img src={item.productImageUrl} alt="product-image" width="50" />
                         <p className="ms-2"> {item.title.length > 15 ? item.title.slice(0, 15) + "..." : item.title} </p>
                       </div>

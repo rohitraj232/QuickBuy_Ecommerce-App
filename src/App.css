@@ -78,3 +78,21 @@
     color: gold;
   }
   /* colors end */
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  /* fonts */
+  .font-13 {
+    font-size: 13px;
+  }
+
+  .font-15 {
+    font-size: 15px;
+  }
+
+  /* .wrapper_total {
+    position: sticky;
+    top: 100px;
+  } */

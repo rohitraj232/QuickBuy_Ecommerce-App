@@ -1,8 +1,9 @@
+import '../../App.css';
 
 const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction}) => {
     return (
         <>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Buy Now
             </button>
 

@@ -3,12 +3,13 @@ import Layout from "../../components/layout/Layout";
 import { decrementQuantity, deleteFromCart, incrementQuantity } from "../../redux/cartSlice";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
-import { CiCircleMinus } from "react-icons/ci";
-import { CiCirclePlus } from "react-icons/ci";
 import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { Navigate } from "react-router-dom";
+import { FaPlusCircle } from "react-icons/fa";
+import { FaMinusCircle } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 
 const products = [
@@ -148,28 +149,45 @@ const CartPage = () => {
     <Layout>
       <section>
         <div className="wrapper_cart">
-          <div className="container">
+          <div className="my-3 container">
+            <div className="wrapper_cart-product-details ms-2 mt-2">
+              <h4>My Cart</h4>
+            </div>
+
             <div className="row">
-              <div className="col-12 col-md-6">
+              <div className="col-12 col-md-8">
+
 
                 {cartItems.length > 0 ?
                   <>
                     {cartItems.map((item, index) => {
                       const { id, title, price, productImageUrl, quantity, category } = item;
                       return (
-                        <div key={index} className="row my-3 border border-1 p-3">
-                          <div className="col-12 col-md-3">
-                            <img src={productImageUrl} alt="product Image" width="100" />
+                        <div key={index} className="row my-3 border border-1 py-3 rounded-3 mx-2">
+                          <div className="col-12">
+                            <div className="row align-items-center">
+                              <div className="col-4 col-lg-2">
+
+                                <img src={productImageUrl} alt="product Image" width="100" />
+                              </div>
+                              <div className="col-8 col-lg-6">
+                                <h4 className="mb-1 font-13">{category}</h4>
+                                <h5 className="font-15">{title}</h5>
+                                <p className="fw-bold text-success mb-0"> ₹ {price}</p>
+                                <p className="mb-1 font-13 mb-0 fw-semibold">Quantity: {quantity}</p>
+                              </div>
+                              <div className="col-12 col-lg-3 mt-2 mt-lg-1">
+                                <div className="d-flex mb-2">
+                                  <button type="button" class="btn border border-1 rounded-0" onClick={() => handleDecrement(id)}><FaMinusCircle className="text-muted" /></button>
+                                  <input type="text" value={quantity} className="w-50 border border-1 text-center" />
+                                  <button type="button" class="btn border border-1 rounded-0" onClick={() => handleIncrement(id)}><FaPlusCircle className="text-muted" /></button>
+                                </div>
+                                <button type="button" class="btn btn-danger" onClick={() => deleteCart(item)}>Remove <MdDelete /></button>
+                              </div>
+
+                            </div>
                           </div>
-                          <div className="col-12 col-md-6">
-                            <p>{title}</p>
-                            <p>{category}</p>
-                            <p>{price}</p>
-                            <button onClick={() => handleDecrement(id)}><CiCircleMinus /></button>
-                            <input type="text" value={quantity} />
-                            <button onClick={() => handleIncrement(id)}><CiCirclePlus /></button>
-                            <button onClick={() => deleteCart(item)}>Remove</button>
-                          </div>
+
                         </div>
                       );
                     })}
@@ -179,20 +197,53 @@ const CartPage = () => {
                 }
 
               </div>
-              <div className="col-12 col-md-6 my-3 p-3">
-                <h4>Price Details:</h4>
-                <p>Price ({cartItemTotal} items): Rs. {cartTotal}</p>
-                <p>Total Amount:  Rs. {cartTotal}</p>
-                {/* buy now modal btn */}
-                {user ?
-                  <BuyNowModal
-                    addressInfo={addressInfo}
-                    setAddressInfo={setAddressInfo}
-                    buyNowFunction={buyNowFunction}
-                  />
-                  :
-                  <Navigate to={'/login'} />
-                }
+              <div className="col-12 col-md-4">
+                <div className="wrapper_total p-3 mt-3 border border-1 rounded-3">
+                  <h4 className="mb-3">Price Details:</h4>
+                  <div className="row">
+                    <div className="col-6">
+                      <p className="mb-0">Price ({cartItemTotal} items): </p>
+
+                    </div>
+                    <div className="col-6">
+                      <p className="text-end text-success fw-bold mb-0">₹ {cartTotal}</p>
+                    </div>
+
+                    <div className="col-6">
+                      <p className="mb-0">Delivery Charges: </p>
+
+                    </div>
+                    <div className="col-6">
+                      <p className="text-end text-success mb-0">Free Delivery</p>
+                    </div>
+
+                    <div className="col-8">
+                      <p>Secured Packaging Fee </p>
+
+                    </div>
+                    <div className="col-4">
+                      <p className="text-end text-success fw-semibold"> ₹ 149</p>
+                    </div>
+
+                    <div className="col-6">
+                      <p className="fw-semibold">Total Amount:</p>
+
+                    </div>
+                    <div className="col-6">
+                      <p className="text-end text-success fw-bold"> ₹ {cartTotal + 149}</p>
+                    </div>
+                  </div>
+                  {/* buy now modal btn */}
+                  {user ?
+                    <BuyNowModal
+                      addressInfo={addressInfo}
+                      setAddressInfo={setAddressInfo}
+                      buyNowFunction={buyNowFunction}
+                    />
+                    :
+                    <Navigate to={'/login'} />
+                  }
+                </div>
               </div>
             </div>
           </div>
