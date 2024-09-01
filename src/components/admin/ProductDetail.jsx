@@ -20,7 +20,7 @@ const ProductDetail = () => {
     const deleteProduct = async (id) => {
         setLoading(true);
         try {
-            await  deleteDoc(doc(fireDB, 'product', id))
+            await deleteDoc(doc(fireDB, 'product', id))
             toast.success("Product deleted Successfully");
             getAllProductFunction();
             setLoading(false);
@@ -35,53 +35,61 @@ const ProductDetail = () => {
             <section>
                 <div className="container">
                     <div className="mt-5">
-                        <div className="row mb-3">
-                            <div className="col-6">
-                                <h6>All Product</h6>
-                            </div>
-                            <div className="col-6">
-                                <Link to="/add-product">
-                                    <button type="button" class="btn btn-primary">Add Product</button>
-                                </Link>
+                        <div className="prod-header border border-1">
+                            <div className="row m-3 align-items-center justify-content-between">
+                                <div className="col-6">
+                                    <h6>All Products</h6>
+                                </div>
+                                <div className="col-6">
+                                    <Link to="/add-product" className="float-end">
+                                        <button type="button" class="btn btn-primary fw-semibold">Add Product</button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
 
                         {/* loader component */}
-                        {loading && <Loader/>}
+                        {loading && <Loader />}
 
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">S.No.</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S.No.</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Action</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                {getAllProduct.map((item, index) => {
-                                    const {id, title, price, category, date, productImageUrl} = item
-                                    return (
-                                        <tr key={index}>
-                                            <th scope="row">{index + 1}.</th>
-                                            <td><img width="50" src={productImageUrl} alt="product image" /></td>
-                                            <td>{title}</td>
-                                            <td>{price}</td>
-                                            <td>{category}</td>
-                                            <td>{date}</td>
-                                            <td onClick={() => navigate(`/update-product/${id}`)}>Edit</td>
-                                            <td onClick={() => deleteProduct(id)}>Delete</td>
-                                        </tr>
-                                    )
-                                })}
+                                    {getAllProduct.map((item, index) => {
+                                        const { id, title, price, category, date, productImageUrl } = item
+                                        return (
+                                            <tr key={index}>
+                                                <th scope="row">{index + 1}.</th>
+                                                <td><img width="50" src={productImageUrl} alt="product image" className="img-fluid" /></td>
+                                                <td>{title}</td>
+                                                <td className="text-success fw-semibold"> ₹ {price}</td>
+                                                <td className="text-muted fw-semibold">{category}</td>
+                                                <td className="text-muted fw-semibold">{date}</td>
+                                                <td onClick={() => navigate(`/update-product/${id}`)}>
+                                                    <button type="button" class="btn btn-warning fw-semibold text-white">Update</button>
+                                                </td>
+                                                <td onClick={() => deleteProduct(id)}>
+                                                    <button type="button" class="btn btn-danger fw-semibold text-white">Delete</button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </section>

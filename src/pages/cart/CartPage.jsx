@@ -193,7 +193,7 @@ const CartPage = () => {
                     })}
                   </>
                   :
-                  <h1>Not Found</h1>
+                  <h5 className="text-center my-5">No product found, Please add any product....</h5>
                 }
 
               </div>
@@ -201,9 +201,9 @@ const CartPage = () => {
                 <div className="wrapper_total p-3 mt-3 border border-1 rounded-3">
                   <h4 className="mb-3">Price Details:</h4>
                   <div className="row">
+
                     <div className="col-6">
                       <p className="mb-0">Price ({cartItemTotal} items): </p>
-
                     </div>
                     <div className="col-6">
                       <p className="text-end text-success fw-bold mb-0">₹ {cartTotal}</p>
@@ -211,7 +211,6 @@ const CartPage = () => {
 
                     <div className="col-6">
                       <p className="mb-0">Delivery Charges: </p>
-
                     </div>
                     <div className="col-6">
                       <p className="text-end text-success mb-0">Free Delivery</p>
@@ -219,7 +218,6 @@ const CartPage = () => {
 
                     <div className="col-8">
                       <p>Secured Packaging Fee </p>
-
                     </div>
                     <div className="col-4">
                       <p className="text-end text-success fw-semibold"> ₹ 149</p>
@@ -227,11 +225,11 @@ const CartPage = () => {
 
                     <div className="col-6">
                       <p className="fw-semibold">Total Amount:</p>
-
                     </div>
                     <div className="col-6">
                       <p className="text-end text-success fw-bold"> ₹ {cartTotal + 149}</p>
                     </div>
+
                   </div>
                   {/* buy now modal btn */}
                   {user ?

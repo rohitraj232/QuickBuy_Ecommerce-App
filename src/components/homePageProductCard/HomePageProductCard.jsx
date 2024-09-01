@@ -124,7 +124,7 @@ const HomePageProductCard = () => {
       <section>
         <div className="container my-5">
           <div className="mb-4">
-            <h1 className="fw-semibold text-center">Bestselling Products</h1>
+            <h2 className="fw-semibold text-center">Bestselling Products</h2>
             <div>
               {loading && <Loader />}
             </div>

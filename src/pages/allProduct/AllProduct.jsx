@@ -121,8 +121,8 @@ const AllProduct = () => {
         <Layout>
             <section className="my-5">
                 <div className="container">
-                    <div className="">
-                        <p className="text-center">All Products</p>
+                    <div className="mb-4">
+                        <h2 className="text-center">All Products</h2>
                         <div>
                             {loading && <Loader />}
                         </div>
@@ -130,30 +130,34 @@ const AllProduct = () => {
                     <div className="wrapper_productCards">
                         <div className="row">
                             {getAllProduct.map((item, index) => {
-                                const { id, title, price, productImageUrl } = item;
+                                const { id, title, price, productImageUrl, category } = item;
                                 return (
                                     <div key={index} className="col-12 col-md-4 col-lg-3">
-                                        <div className="wrapper_product">
-                                            <img
-                                                src={productImageUrl}
-                                                onClick={() => navigate(`/productInfo/${id}`)}
-                                                alt=""
-                                                className="img-fluid"
-                                            />
-                                            <p>QuickBuy</p>
-                                            <h5>{title.substring(0, 20)}</h5>
-                                            <h4>Rs {price}</h4>
-                                            <div>
-                                                {cartItems.some((p) => p.id === item.id)
-                                                    ?
-                                                    <button onClick={() => deleteCart(item)} className="mt-2">
-                                                        Delete from Cart
-                                                    </button>
-                                                    :
-                                                    <button onClick={() => addCart(item)} className="mt-2">
-                                                        Add to cart
-                                                    </button>
-                                                }
+                                        <div className="wrapper_product border border-1 rounded-3 mb-4 cursor-pointer">
+                                            <div className="wrapper_product-img">
+                                                <img
+                                                    src={productImageUrl}
+                                                    onClick={() => navigate(`/productInfo/${id}`)}
+                                                    alt="productimg"
+                                                    className="img-fluid"
+                                                />
+                                            </div>
+                                            <div className="wrapper-item-details p-3">
+                                                <p className="fw-semibold mb-1 text-muted">{category}</p>
+                                                <h5>{title.substring(0, 19) + "..."}</h5>
+                                                <h6 className="text-primary"> ₹  {price}</h6>
+                                                <div>
+                                                    {cartItems.some((p) => p.id === item.id)
+                                                        ?
+                                                        <button onClick={() => deleteCart(item)} type="button" class="btn btn-primary mt-3 w-100">
+                                                            Delete from Cart
+                                                        </button>
+                                                        :
+                                                        <button onClick={() => addCart(item)} type="button" class="btn btn-primary mt-3 w-100">
+                                                            Add to cart
+                                                        </button>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

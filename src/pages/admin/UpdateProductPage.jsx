@@ -9,28 +9,40 @@ import toast from "react-hot-toast";
 
 const categoryList = [
   {
-    name: 'fashion'
+    name: 'Fashion'
   },
   {
-    name: 'shirt'
+    name: 'Shirt'
   },
   {
-    name: 'jacket'
+    name: 'Jacket'
   },
   {
-    name: 'mobile'
+    name: 'Mobile'
   },
   {
-    name: 'laptop'
+    name: 'Laptop'
   },
   {
-    name: 'shoes'
+    name: 'Shoe'
   },
   {
-    name: 'home'
+    name: 'Headphone'
   },
   {
-    name: 'books'
+    name: 'Wireless Controller'
+  },
+  {
+    name: 'Keyboard'
+  },
+  {
+    name: 'Camera'
+  },
+  {
+    name: 'Speaker'
+  },
+  {
+    name: 'Mouse'
   }
 ]
 
@@ -117,79 +129,99 @@ const UpdateProductPage = () => {
           {/* loader component */}
           {loading && <Loader />}
 
-          <div class="row g-3">
-            <div class="col-12">
-              <input type="text" class="form-control"
-                value={product.title}
-                onChange={(e) => {
-                  setProduct({
-                    ...product,
-                    title: e.target.value
-                  })
-                }}
-                placeholder="Product title" aria-label="Product title" />
-            </div>
-            <div class="col-12">
-              <input type="number" class="form-control"
-                value={product.price}
-                onChange={(e) => {
-                  setProduct({
-                    ...product,
-                    price: e.target.value
-                  })
-                }}
-                placeholder="Product price" aria-label="Product price" />
-            </div>
-            <div class="col-12">
-              <input type="url" class="form-control"
-                value={product.productImageUrl}
-                onChange={(e) => {
-                  setProduct({
-                    ...product,
-                    productImageUrl: e.target.value
-                  })
-                }}
-                placeholder="Product Img url" aria-label="Product Img url" />
-            </div>
+          <div className="wrapper_update-product border border-1 py-4 rounded-3">
+            <h3 className="mx-3 my-2">Update Product....</h3>
+            <div class="row">
+              <div className="col-12 col-md-6">
+                <div className="wrapper_update-details m-3">
+                  <div className="row g-3">
+                    <div className="col-12">
+                      <input type="text" class="form-control"
+                        value={product.title}
+                        onChange={(e) => {
+                          setProduct({
+                            ...product,
+                            title: e.target.value
+                          })
+                        }}
+                        placeholder="Product title" aria-label="Product title" />
+                    </div>
 
-            <div className="col-12">
-              <select
-                value={product.category}
-                onChange={(e) => {
-                  setProduct({
-                    ...product,
-                    category: e.target.value
-                  })
-                }}
-                class="form-select" aria-label="Default select example">
-                <option selected>Select Product category...</option>
-                {categoryList.map((value, index) => {
-                  const { name } = value
-                  return (
-                    <option value={name} key={index}>{name}</option>
-                  )
-                })}
-              </select>
-            </div>
+                    <div className="col-12">
+                      <input type="number" class="form-control"
+                        value={product.price}
+                        onChange={(e) => {
+                          setProduct({
+                            ...product,
+                            price: e.target.value
+                          })
+                        }}
+                        placeholder="Product price" aria-label="Product price" />
+                    </div>
 
-            <div className="col-12">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Product description</label>
-                <textarea
-                  value={product.description}
-                  onChange={(e) => {
-                    setProduct({
-                      ...product,
-                      description: e.target.value
-                    })
-                  }}
-                  class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div className="col-12">
+                      <input type="url" class="form-control"
+                        value={product.productImageUrl}
+                        onChange={(e) => {
+                          setProduct({
+                            ...product,
+                            productImageUrl: e.target.value
+                          })
+                        }}
+                        placeholder="Product Img url" aria-label="Product Img url" />
+                    </div>
+
+                    <div className="col-12">
+                      <select
+                        value={product.category}
+                        onChange={(e) => {
+                          setProduct({
+                            ...product,
+                            category: e.target.value
+                          })
+                        }}
+                        class="form-select" aria-label="Default select example">
+                        <option selected>Select Product category...</option>
+                        {categoryList.map((value, index) => {
+                          const { name } = value
+                          return (
+                            <option value={name} key={index}>{name}</option>
+                          )
+                        })}
+                      </select>
+                    </div>
+
+                    <div className="col-12">
+                      <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label fw-semibold">Product Description:</label>
+                        <textarea
+                          value={product.description}
+                          onChange={(e) => {
+                            setProduct({
+                              ...product,
+                              description: e.target.value
+                            })
+                          }}
+                          class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+                      </div>
+                    </div>
+
+                    <div className="col-12">
+                      <button onClick={updateProduct} type="button" class="btn btn-primary text-center">Update Product</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="col-12">
-              <button onClick={updateProduct} type="button" class="btn btn-primary text-center">update Product</button>
+
+              <div className="col-12 col-md-6">
+                <div className="wrapper_update-img">
+                  <img src="/assets/vectors/update-product.avif" alt="update-product img" className="img-fluid" />
+                </div>
+              </div>
+
             </div>
           </div>
+
         </div>
       </section>
     </>

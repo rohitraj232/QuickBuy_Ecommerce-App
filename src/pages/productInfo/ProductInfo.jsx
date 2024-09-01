@@ -76,7 +76,7 @@ const ProductInfo = () => {
                 <img src={product?.productImageUrl} alt="productimg" width="500" height="500" className='img-fluid mx-auto d-block rounded-3 mb-3' />
               </div>
               <div className="col-12 col-md-6">
-                <h2 className='mb-3'> {product?.title} </h2>
+                <h3 className='mb-3'> {product?.title} </h3>
                 <div className="highlight mb-3">
                   <p className='mb-1'><FaCheckCircle className='text-success' /> In Stock </p>
                   <p className='mb-1'><FaCheckCircle className='text-success' /> Free Delivery Available </p>
