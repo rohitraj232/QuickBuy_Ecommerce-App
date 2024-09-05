@@ -42,6 +42,15 @@ const categoryList = [
   },
   {
     name: 'Mouse'
+  },
+  {
+    name: 'Smartwatch'
+  },
+  {
+    name: 'Earbuds'
+  },
+  {
+    name: 'Tab'
   }
 ]
 
@@ -170,7 +179,7 @@ const AddProductPage = () => {
                               description: e.target.value
                             })
                           }}
-                          class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                          class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                       </div>
                     </div>
                     <div className="col-12">

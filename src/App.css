@@ -92,7 +92,26 @@
     font-size: 15px;
   }
 
+  .font-18 {
+    font-size: 18px;
+  }
+
   /* .wrapper_total {
     position: sticky;
     top: 100px;
   } */
+
+  .bg-muted {
+    background-color: #eceff4;
+  }
+
+  .section-title::after {
+    content: ' ';
+    height: 3px;
+    width: 114px;
+    display: block;
+    background-color: #fed700;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+}

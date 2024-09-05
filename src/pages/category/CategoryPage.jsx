@@ -38,9 +38,9 @@ const CategoryPage = () => {
 
     return (
         <Layout>
-            <div>
+            <div className="my-5">
                 <div className="container">
-                    <h3 className="text-center"> {categoryname} </h3>
+                    <h3 className="text-center mb-4"> {categoryname} </h3>
 
                     {loading ?
                         <div>
@@ -57,22 +57,24 @@ const CategoryPage = () => {
                                             const { id, title, price, productImageUrl } = item;
                                             return (
                                                 <div key={index} className="col-12 col-md-4 col-lg-3">
-                                                    <div className="wrapper_product">
-                                                        <img src={productImageUrl} onClick={() => navigate(`/productInfo/${id}`)} alt="" className="img-fluid" />
-                                                        <p>QuickBuy</p>
-                                                        <h5>{title.substring(0, 20)}</h5>
-                                                        <h4>Rs {price}</h4>
+                                                    <div className="wrapper_product rounded-3 border border-1 mb-3">
+                                                        <img src={productImageUrl} onClick={() => navigate(`/productInfo/${id}`)} alt="" className=" cursor-pointer rounded-3 img-fluid" />
+                                                        <div className="sub-wrapper_product p-2">
+                                                        <p className="fw-semibold mb-1 text-muted font-13">QuickBuy</p>
+                                                        <h5 className="font-15 fw-semibold cursor-pointer" onClick={() => navigate(`/productInfo/${id}`)}>{title.substring(0, 19) + "..."}</h5>
+                                                        <h6 className="text-primary fw-bold"> ₹  {price}</h6>
                                                         <div>
                                                             {cartItems.some((p) => p.id === item.id)
                                                                 ?
-                                                                <button onClick={() => deleteCart(item)} className="mt-2">
+                                                                <button onClick={() => deleteCart(item)} class="btn btn-primary mt-3 w-100">
                                                                     Delete from Cart
                                                                 </button>
                                                                 :
-                                                                <button onClick={() => addCart(item)} className="mt-2">
+                                                                <button onClick={() => addCart(item)} class="btn btn-primary mt-3 w-100">
                                                                     Add to cart
                                                                 </button>
                                                             }
+                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,7 +85,7 @@ const CategoryPage = () => {
                                     :
 
                                     <div>
-                                        <p>no {categoryname} product found </p>
+                                        <p>no {categoryname} product found.... </p>
                                     </div>
                                 }
 

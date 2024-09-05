@@ -5,19 +5,21 @@ import HomePageProductCard from "../../components/homePageProductCard/HomePagePr
 import Track from "../../components/track/Track"
 // import Testimonial from "../../components/testimonial/Testimonial"
 // import Loader from "../../components/loader/Loader"
-// import SearchBar from "../../components/searchBar/SearchBar"
 import TrendingBanner from "../../components/trendingBanner/TrendingBanner"
+import OnsaleProducts from "../../components/onSaleProducts/OnsaleProducts"
+import TopSellingShoes from "../../components/topSellingShoes/TopSellingShoes"
 
 const Home = () => {
   return (
     <Layout>
       <HeroSection />
-      {/* <SearchBar /> */}
       <TrendingBanner/>
       <Category />
       <HomePageProductCard />
+      <TopSellingShoes />
       <Track />
       {/* <Testimonial /> */}
+      <OnsaleProducts />
     </Layout>
   )
 }

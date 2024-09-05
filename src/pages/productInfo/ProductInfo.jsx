@@ -82,7 +82,7 @@ const ProductInfo = () => {
                   <p className='mb-1'><FaCheckCircle className='text-success' /> Free Delivery Available </p>
                   <p className='mb-1'><FaCheckCircle className='text-success' /> Sales 30% Off Use Code: <span className='fw-semibold'>QUICKBUY30 </span> </p>
                 </div>
-                <h5 className='text-primary'> ₹ {product?.price} </h5>
+                <h5 className='text-primary fw-bold'> ₹ {product?.price} </h5>
                 <h6 className='fs-5'>Description :</h6>
                 <p className='text-justify'>
                   {product?.description}

@@ -5,27 +5,27 @@ import '../../App.css'
 const category = [
   {
     image: "/assets/category/category-handbag.webp",
-    name: "HandBags",
+    name: "HandBag",
   },
   {
     image: "/assets/category/category-watches.webp",
-    name: "Watches",
+    name: "Smartwatch",
   },
   {
     image: "/assets/category/category-jacket.webp",
-    name: "Jackets",
+    name: "Jacket",
   },
   {
     image: "/assets/category/category-shoes.webp",
-    name: "Shoes",
+    name: "Shoe",
   },
   {
     image: "/assets/category/category-jeans.webp",
-    name: "Jeans",
+    name: "Jean",
   },
   {
     image: "/assets/category/category-shirt.webp",
-    name: "Shirts",
+    name: "Shirt",
   },   
 ];
 

@@ -141,8 +141,8 @@ const HomePageProductCard = () => {
                       </div>
                       <div className="wrapper-item-details p-3">
                         <p className="fw-semibold mb-1 text-muted">{category}</p>
-                        <h5>{title.substring(0, 19) + "..."}</h5>
-                        <h6 className="text-primary"> ₹  {price}</h6>
+                        <h5 onClick={() => navigate(`/productInfo/${id}`)}>{title.substring(0, 19) + "..."}</h5>
+                        <h6 className="text-primary fw-bold"> ₹  {price}</h6>
                         <div>
                           {cartItems.some((p) => p.id === item.id)
                             ?
