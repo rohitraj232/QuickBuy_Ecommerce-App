@@ -3,7 +3,7 @@ import "../../App.css"
 const HeroSection = () => {
   return (
     <>
-      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      {/* <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -61,7 +61,21 @@ const HeroSection = () => {
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-      </div>
+      </div> */}
+
+      <section className="main-banner">
+        <div className="container pt-5">
+          <div className="row">
+            <div className="col-12">
+              <div className="wrapper_banners mt-5">
+                <h5 className="pt-5 text-light">* Starting price ₹ 1299.00</h5>
+                <h1 className="font-90 text-white text-uppercase">Portable <br /> wireless</h1>
+                <h6 className=" text-white text-uppercase"></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

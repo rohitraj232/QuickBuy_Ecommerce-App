@@ -8,13 +8,15 @@ import Track from "../../components/track/Track"
 import TrendingBanner from "../../components/trendingBanner/TrendingBanner"
 import OnsaleProducts from "../../components/onSaleProducts/OnsaleProducts"
 import TopSellingShoes from "../../components/topSellingShoes/TopSellingShoes"
+import FashionProducts from "../../components/fashionProducts/FashionProducts"
 
 const Home = () => {
   return (
     <Layout>
       <HeroSection />
-      <TrendingBanner/>
       <Category />
+      <TrendingBanner/>
+      <FashionProducts/>
       <HomePageProductCard />
       <TopSellingShoes />
       <Track />

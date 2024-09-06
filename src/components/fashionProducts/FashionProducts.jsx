@@ -8,7 +8,7 @@ import { FaStar } from "react-icons/fa";
 import Loader from '../loader/Loader';
 
 
-const TopSellingShoes = () => {
+const FashionProducts = () => {
     const settings = {
         dots: false,
         infinite: true,
@@ -52,14 +52,14 @@ const TopSellingShoes = () => {
     const navigate = useNavigate();
 
     // filtering only shoe category
-    const filterShoes = getAllProduct.filter((obj) => obj.category.includes("Shoe"));
+    const filterShoes = getAllProduct.filter((obj) => obj.category.includes("Fashion"));
 
-    return (
-        <>
-            <section className='my-5'>
+  return (
+    <>
+    <section className='my-5'>
                 <div className="container">
                     <div className="wrapper_topSelling-shoes mt-5 mb-4">
-                        <h2 class="fw-semibold text-center">Top Selling Shoes</h2>
+                        <h2 class="fw-semibold text-center">Top Fashion Collections</h2>
                     </div>
 
                     <div>
@@ -99,8 +99,9 @@ const TopSellingShoes = () => {
                 </div>
 
             </section>
-        </>
-    )
+      
+    </>
+  )
 }
 
-export default TopSellingShoes;
+export default FashionProducts
