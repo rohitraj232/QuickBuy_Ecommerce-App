@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="wrapper_footer footer-bg p-3">
             <div className="row p-4">
               <div className="col-12 col-md-6 col-lg-3 col-xl-4">
-                <div className="wrapper_about">
+                <div className="wrapper_about mb-4">
                   <h2 className="mb-2">QuickBuy</h2>
                   <p className="text-muted">QuickBuy is a user-friendly eCommerce platform offering fast, convenient shopping with a wide range of products and secure checkout.</p>
                   <h5 >Follow Us</h5>
@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="col-12 col-md-6 col-lg-3 col-xl-2">
-                <div className="wrapper_links ms-md-3">
+                <div className="wrapper_links ms-md-3 mb-4">
                   <h5 className="mb-3">About</h5>
                   <p className="fw-semibold mb-2 cursor-pointer text-muted">About Us</p>
                   <p className="fw-semibold mb-2 cursor-pointer text-muted">Delivery Information</p>
@@ -32,7 +32,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="col-12 col-md-6 col-lg-3 col-xl-2">
-                <div className="wrapper_support ms-md-4">
+                <div className="wrapper_support ms-md-4 mb-4">
                   <h5 className="mb-3">Support</h5>
                   <p className="fw-semibold mb-2 cursor-pointer text-muted">FAQs</p>
                   <p className="fw-semibold mb-2 cursor-pointer text-muted">Reviews</p>
@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="col-12 col-md-6 col-lg-3 col-xl-4">
-                <div className="wrapper_install ms-md-3">
+                <div className="wrapper_install ms-md-3 mb-4">
                   <h5 className="mb-3">Install App</h5>
                   <p className='text-muted fw-semibold'>From App Store or Google Play</p>
                   <div>
@@ -57,10 +57,10 @@ const Footer = () => {
 
             <hr />
             <div className="row px-4 py-2">
-              <div className="col-6">
+              <div className="col-12 col-md-6 mb-3">
                 <h6 className="text-muted">Copyright © 2024 by QuickBuy All rights reserved.</h6>
               </div>
-              <div className="col-6">
+              <div className="col-12 col-md-6">
                 <div className="wrapper_payment-img d-flex align-items-center float-end">
                   <p className="me-3 mb-0 fw-bold text-muted">Payment</p>
                   <img src="/assets/vectors/footer-payment.webp" alt="payment img" loading="lazy" className="img-fluid cursor-pointer" />
