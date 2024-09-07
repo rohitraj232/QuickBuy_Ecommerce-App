@@ -88,13 +88,13 @@ const Signup = () => {
                     <div className="wrapper_signup">
                         <div className="wrapper_signup-form">
                             <div className="row justify-content-center align-items-center">
-                                <div className="col-12 col-md-8">
+                                <div className="col-12 col-md-10">
                                     <div className=" border border-1 p-3 rounded-4">
                                         <div className="row">
-                                            <div className="col-12 col-md-5">
-                                                <img src="https://picsum.photos/300/500" alt="login image" className="rounded-4 img-fluid d-none d-md-block" />
-                                            </div>
                                             <div className="col-12 col-md-7">
+                                                <img src="../public/assets/signup.avif" loading="lazy" alt="login image" className="rounded-4 img-fluid d-none d-md-block" />
+                                            </div>
+                                            <div className="col-12 col-md-5">
                                                 <div className="form">
                                                     <h3 className="text-center">Sign Up</h3>
 

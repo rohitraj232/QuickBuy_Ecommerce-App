@@ -19,9 +19,9 @@ const SearchBar = () => {
 
   return (
     <>
-      <div class="container">
-        {/* <label for="exampleFormControlInput1" class="form-label">Search Your Favourite Product....</label> */}
-        <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" class="form-control mt-3 mt-md-0 search" id="exampleFormControlInput1" placeholder="Search here" />
+      <div className="container">
+        {/* <label for="exampleFormControlInput1" className="form-label">Search Your Favourite Product....</label> */}
+        <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className="form-control mt-3 mt-md-0 search" id="exampleFormControlInput1" placeholder="Search here" />
       </div>
 
       {/* search dropdown */}

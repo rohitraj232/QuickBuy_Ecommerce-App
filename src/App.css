@@ -175,3 +175,7 @@ z-index:10;
   background-position: bottom;
   background-size: cover;
 }
+
+.footer-bg {
+  background-color: #e4e4e4;
+}

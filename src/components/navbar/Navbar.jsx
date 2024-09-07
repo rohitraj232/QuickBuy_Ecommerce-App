@@ -22,13 +22,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary py-3 px-4 nav-sticky bottom-shadow">
-        <div class="container-fluid">
-          <Link class="navbar-brand" to="#">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary py-3 px-4 nav-sticky bottom-shadow">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="#">
             QuickBuy
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -36,68 +36,68 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className="ms-md-4">
             <SearchBar />
           </div>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Link class="nav-link active fw-semibold" aria-current="page" to="#">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link active fw-semibold" aria-current="page" to="#">
                   Home
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link fw-semibold" to={'/user-dashboard'}>
+              <li className="nav-item">
+                <Link className="nav-link fw-semibold" to={'/user-dashboard'}>
                   User
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link fw-semibold" to={'/admin-dashboard'}>
+              <li className="nav-item">
+                <Link className="nav-link fw-semibold" to={'/admin-dashboard'}>
                   Admin
                 </Link>
               </li>
 
               {/* sign-up */}
-              {!user ? <li class="nav-item">
-                <Link class="nav-link fw-semibold" to={'/signup'}>
+              {!user ? <li className="nav-item">
+                <Link className="nav-link fw-semibold" to={'/signup'}>
                   Sign Up
                 </Link>
               </li> : ""}
 
               {/* login */}
-              {!user ? <li class="nav-item">
-                <Link class="nav-link fw-semibold" to={'/login'}>
+              {!user ? <li className="nav-item">
+                <Link className="nav-link fw-semibold" to={'/login'}>
                   Login
                 </Link>
               </li> : ""}
 
               {/* user */}
-              {user?.role === "user" && <li class="nav-item">
-                <Link class="nav-link fw-semibold" to={'/user-dashboard'}>
+              {user?.role === "user" && <li className="nav-item">
+                <Link className="nav-link fw-semibold" to={'/user-dashboard'}>
                   {user?.name}
                 </Link>
               </li>}
 
               {/* admin */}
-              {user?.role === "admin" && <li class="nav-item">
-                <Link class="nav-link fw-semibold" to={'/admin-dashboard'}>
+              {user?.role === "admin" && <li className="nav-item">
+                <Link className="nav-link fw-semibold" to={'/admin-dashboard'}>
                   {user?.name}
                 </Link>
               </li>}
 
-              {user && <li class="nav-item" onClick={logout}>
+              {user && <li className="nav-item" onClick={logout}>
                 <Link className="nav-link fw-semibold">Log Out</Link>
               </li>}
 
-              <li class="nav-item mx-4">
-                <Link class="nav-link position-relative" to="/cart">
+              <li className="nav-item mx-4">
+                <Link className="nav-link position-relative" to="/cart">
                   {/* cart({cartItems.length}) */}
                   <IoCartOutline className="fs-4" />
-                  <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">
+                  <span className="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">
                     {cartItems.length}
-                    <span class="visually-hidden">cart messages</span>
+                    <span className="visually-hidden">cart messages</span>
                   </span>
                 </Link>
               </li>

@@ -59,7 +59,7 @@ const TopSellingShoes = () => {
             <section className='my-5'>
                 <div className="container">
                     <div className="wrapper_topSelling-shoes mt-5 mb-4">
-                        <h2 class="fw-semibold text-center">Top Selling Shoes</h2>
+                        <h2 className="fw-semibold text-center">Top Selling Shoes</h2>
                     </div>
 
                     <div>
