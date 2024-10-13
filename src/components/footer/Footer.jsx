@@ -5,8 +5,8 @@ const Footer = () => {
     <>
       <footer>
         <div className="container-fluid p-0">
-          <div className="wrapper_footer footer-bg p-3">
-            <div className="row p-4">
+          <div className="wrapper_footer footer-bg p-md-3">
+            <div className="row p-3 p-md-4">
               <div className="col-12 col-md-6 col-lg-3 col-xl-4">
                 <div className="wrapper_about mb-4">
                   <h2 className="mb-2">QuickBuy</h2>

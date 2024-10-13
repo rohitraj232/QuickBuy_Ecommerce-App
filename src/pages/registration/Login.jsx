@@ -91,7 +91,7 @@ const Login = () => {
                   <div className=" border border-1 p-3 rounded-4">
                     <div className="row">
                       <div className="col-12 col-md-7">
-                        <img src="../public/assets/login.avif" loading="lazy" alt="login image" className="rounded-4 img-fluid d-none d-md-block" />
+                        <img src="/assets/login.avif" loading="lazy" alt="login image" className="rounded-4 img-fluid d-none d-md-block" />
                       </div>
                       <div className="col-12 col-md-5">
                         <div className="form mt-3 mt-md-5">

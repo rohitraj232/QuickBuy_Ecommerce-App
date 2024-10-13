@@ -92,7 +92,7 @@ const Signup = () => {
                                     <div className=" border border-1 p-3 rounded-4">
                                         <div className="row">
                                             <div className="col-12 col-md-7">
-                                                <img src="../public/assets/signup.avif" loading="lazy" alt="login image" className="rounded-4 img-fluid d-none d-md-block" />
+                                                <img src="/assets/signup.avif" loading="lazy" alt="login image" className="rounded-4 img-fluid d-none d-md-block" />
                                             </div>
                                             <div className="col-12 col-md-5">
                                                 <div className="form">
